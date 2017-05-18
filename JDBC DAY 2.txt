@@ -1,0 +1,29 @@
+C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib
+
+ // Step 1: Load the Driver            
+Class.forName("oracle.jdbc.driver.OracleDriver");            System.out.println("Driver loaded successfully");                       
+
+ // Step 2: Get the Connection           
+ Connection conn=DriverManager.getConnection(                    "jdbc:oracle:thin:@localhost:1521:xe",                    
+"system",                    
+"system");           
+ System.out.println("Connection Established");                        
+
+// Step 3: Create the Statement          
+  Statement st = conn.createStatement();  
+                     
+// Step 4: Fire Query and get the ResultSet 
+ String query = "select * from EMP";            
+ResultSet rs = st.executeQuery(query);   
+                     
+// Step 5: Fetch the data from the ResultSet and print            
+while(rs.next())
+{int id = rs.getInt(1);                
+String n = rs.getString(2);               
+ String d = rs.getString(3);                
+System.out.println(id + " : " + n + " : " + d);           
+ }        
+               
+ rs.close();            
+st.close();            
+conn.close();
